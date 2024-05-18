@@ -1,44 +1,58 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterScripts : MonoBehaviour
 {
     [SerializeField] float speed;
     [SerializeField] Rigidbody rb;
+    bool oyunDurduMu;
 
     void Start()
     {
-        // Rigidbody bileþenini bul ve ata, eðer inspector'dan atanmamýþsa
-        if (rb == null)
+        oyunDurduMu = false;
+        Time.timeScale = 1;
+        
+        if (rb == null) // Rigidbody bileþenini bul ve ata vee eðer inspector'dan atanmamýþsa
         {
             rb = GetComponent<Rigidbody>();
         }
+        
     }
 
     void Update()
     {
-        // Karakteri WASD ile döndürmek için giriþleri al
-        float moveHorizontal = Input.GetAxis("Horizontal"); // A ve D tuþlarý veya Sol ve Sað ok tuþlarý
-        float moveVertical = Input.GetAxis("Vertical"); // W ve S tuþlarý veya Yukarý ve Aþaðý ok tuþlarý
+        if (!oyunDurduMu)
+        {          
+            float moveHorizontal = Input.GetAxis("Horizontal");
+            float moveVertical = Input.GetAxis("Vertical");  
 
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-        MoveCharacter(movement);
+            Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+            MoveCharacter(movement);
+        }
     }
 
     void MoveCharacter(Vector3 direction)
     {
-        // Kameranýn yönüne göre hareketi dönüþtür
-        Vector3 move = direction * speed * Time.deltaTime;
-        rb.MovePosition(transform.position + move);
+        if (!oyunDurduMu)
+        {
+            
+            Vector3 move = direction * speed * Time.deltaTime; // Kameranýn yönüne göre hareketi dönüþtür
+            rb.MovePosition(transform.position + move);
+        }
     }
 
-    private void OnCollisionEnter(Collision other)
+    void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Obstacle"))
+       
+        if (other.gameObject.tag == "Obstacle")
         {
-            Console.WriteLine("öldüüüü");
+            Time.timeScale = 0;
+            oyunDurduMu = true;
+            SceneManager.LoadScene("MainManu");
         }
     }
 
