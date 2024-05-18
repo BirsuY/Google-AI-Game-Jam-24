@@ -8,8 +8,11 @@ using UnityEngine.SceneManagement;
 public class CharacterScripts : MonoBehaviour
 {
     [SerializeField] float speed;
+    [SerializeField] float jumpForce;
     [SerializeField] Rigidbody rb;
     bool oyunDurduMu;
+    bool isGrounded;
+
 
     void Start()
     {
@@ -32,6 +35,11 @@ public class CharacterScripts : MonoBehaviour
 
             Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
             MoveCharacter(movement);
+
+            if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+            {
+                Jump();
+            }
         }
     }
 
@@ -44,6 +52,11 @@ public class CharacterScripts : MonoBehaviour
             rb.MovePosition(transform.position + move);
         }
     }
+    void Jump()
+    {
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        isGrounded = false;
+    }
 
     void OnCollisionEnter(Collision other)
     {
@@ -53,6 +66,11 @@ public class CharacterScripts : MonoBehaviour
             Time.timeScale = 0;
             oyunDurduMu = true;
             SceneManager.LoadScene("MainManu");
+        }
+
+        if (other.gameObject.tag == "Ground")
+        {
+            isGrounded = true;
         }
     }
 
