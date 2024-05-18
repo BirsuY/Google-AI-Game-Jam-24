@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,6 +32,14 @@ public class CharacterScripts : MonoBehaviour
         // Kameranýn yönüne göre hareketi dönüþtür
         Vector3 move = direction * speed * Time.deltaTime;
         rb.MovePosition(transform.position + move);
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Obstacle"))
+        {
+            Console.WriteLine("öldüüüü");
+        }
     }
 
 }
