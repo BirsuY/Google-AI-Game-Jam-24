@@ -41,15 +41,44 @@ public class CharacterScripts : MonoBehaviour
             if (isGrounded && Input.GetKeyDown(KeyCode.Space))
             {
                 Jump();
-                anim.SetBool("jump", true);
+                isGrounded = false;
             }
 
-            if (isGrounded)
+            // if (rb.velocity.y > 0)
+            // {
+            //     anim.SetBool("jump", true);
+            // }
+            // if (rb.velocity.y == 0)
+            // {
+            //     anim.SetBool("jump", false);
+            // }
+
+            if (movement != Vector3.zero)
             {
-                anim.SetBool("jump", false);
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), .01f);
             }
 
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+            {
+                anim.SetBool("run", true);
+            }
+            else
+            {
+                anim.SetBool("run", false);
+            }
+
+
+            
         }
+
+      //  if (Input.GetKey(KeyCode.W))
+      //  {
+      //      print("gavurun tohumu goþuyoor");
+      //      anim.SetBool("run", true);
+      //  }
+      //  else anim.SetBool("run", false);
+
+
     }
 
     void MoveCharacter(Vector3 direction)
@@ -57,7 +86,7 @@ public class CharacterScripts : MonoBehaviour
         if (!oyunDurduMu)
         {
             
-            Vector3 move = direction * speed * Time.deltaTime; // Kameran?n y?n?ne g?re hareketi d?n??t?r
+            Vector3 move = direction * speed * Time.deltaTime; // Kameranin yonune gore hareketimiz dönüyo
             rb.MovePosition(transform.position + move);
          
         }
@@ -65,7 +94,8 @@ public class CharacterScripts : MonoBehaviour
     void Jump()
     {
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        isGrounded = false;
+        anim.SetTrigger("cump");
+        
     }
 
     void OnCollisionEnter(Collision other)
@@ -81,7 +111,12 @@ public class CharacterScripts : MonoBehaviour
         if (other.gameObject.tag == "Ground")
         {
             isGrounded = true;
+          //  anim.SetBool("jump", false);
         }
+       // else
+       // {
+       //    anim.SetBool("jump", true);
+       // }
     }
 
 }

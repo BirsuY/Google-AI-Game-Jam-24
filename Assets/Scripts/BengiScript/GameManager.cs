@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
         if (gameStarted)
         {
             timer += Time.deltaTime;
-            Debug.Log("Zamanlayýcý: " + timer);
+           // Debug.Log("Zamanlayýcý: " + timer);
 
             if (timer >= timeToSurvive)
             {
