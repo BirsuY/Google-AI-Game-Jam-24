@@ -21,6 +21,7 @@ public class MusicManager : MonoBehaviour
         }
     }
 
+
     public void PlayMusic()
     {
         foreach (AudioSource audioSource in audioSources)

@@ -49,4 +49,10 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
         MusicManager.instance.PlayMusic();
     }
+
+    public void QuitGame()
+    {
+        Debug.Log("OMG oyundan çýktýk");
+        Application.Quit();
+    }
 }

@@ -13,19 +13,32 @@ public class CharacterScripts : MonoBehaviour
     bool oyunDurduMu;
     bool isGrounded;
     [SerializeField] Animator anim;
-    
+    private AudioSource audioSource;
+
 
 
     void Start()
     {
         oyunDurduMu = false;
         Time.timeScale = 1;
-        
+
+        audioSource = GetComponent<AudioSource>();
+
         if (rb == null) // Rigidbody bile?enini bul ve ata vee e?er inspector'dan atanmam??sa
         {
             rb = GetComponent<Rigidbody>();
         }
-        
+
+        Invoke("PlaySoundAfterDelay", 15f);
+
+    }
+
+    void PlaySoundAfterDelay()
+    {
+        if (!audioSource.isPlaying)
+        {
+            audioSource.Play();
+        }
     }
 
     void Update()
