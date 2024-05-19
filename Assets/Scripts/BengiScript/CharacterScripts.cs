@@ -21,7 +21,7 @@ public class CharacterScripts : MonoBehaviour
         oyunDurduMu = false;
         Time.timeScale = 1;
         
-        if (rb == null) // Rigidbody bileþenini bul ve ata vee eðer inspector'dan atanmamýþsa
+        if (rb == null) // Rigidbody bile?enini bul ve ata vee e?er inspector'dan atanmam??sa
         {
             rb = GetComponent<Rigidbody>();
         }
@@ -64,7 +64,7 @@ public class CharacterScripts : MonoBehaviour
         if (!oyunDurduMu)
         {
             
-            Vector3 move = direction * speed * Time.deltaTime; // Kameranýn yönüne göre hareketi dönüþtür
+            Vector3 move = direction * speed * Time.deltaTime; // Kameran?n y?n?ne g?re hareketi d?n??t?r
             rb.MovePosition(transform.position + move);
             isMove = true;
          
