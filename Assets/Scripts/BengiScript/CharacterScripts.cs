@@ -13,7 +13,7 @@ public class CharacterScripts : MonoBehaviour
     bool oyunDurduMu;
     bool isGrounded;
     [SerializeField] Animator anim;
-    bool isMove;
+    
 
 
     void Start()
@@ -38,24 +38,17 @@ public class CharacterScripts : MonoBehaviour
             Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
             MoveCharacter(movement);
 
-            if (isMove == true)
-            {
-                anim.SetFloat("Speed", 0.1f);
-            }
-            else
-            {
-                anim.SetFloat("Speed", 0f);
-            }
-
             if (isGrounded && Input.GetKeyDown(KeyCode.Space))
             {
                 Jump();
-                anim.SetBool("Jump", true);
+                anim.SetBool("jump", true);
             }
-            else
+
+            if (isGrounded)
             {
-                anim.SetBool("Jump", false);
+                anim.SetBool("jump", false);
             }
+
         }
     }
 
@@ -66,7 +59,6 @@ public class CharacterScripts : MonoBehaviour
             
             Vector3 move = direction * speed * Time.deltaTime; // Kameranýn yönüne göre hareketi dönüþtür
             rb.MovePosition(transform.position + move);
-            isMove = true;
          
         }
     }
