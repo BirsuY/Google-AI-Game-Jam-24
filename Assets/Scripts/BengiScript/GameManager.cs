@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
         if (gameStarted)
         {
             timer += Time.deltaTime;
-           // Debug.Log("Zamanlayýcý: " + timer);
+           // Debug.Log("Zamanlayýcý  okito");
 
             if (timer >= timeToSurvive)
             {
@@ -47,5 +47,6 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Sahne Yükleniyor: " + sceneName);
         SceneManager.LoadScene(sceneName);
+        MusicManager.instance.PlayMusic();
     }
 }

@@ -105,6 +105,7 @@ public class CharacterScripts : MonoBehaviour
         {
             Time.timeScale = 0;
             oyunDurduMu = true;
+            MusicManager.instance.StopMusic();
             SceneManager.LoadScene("MainManu");
         }
 

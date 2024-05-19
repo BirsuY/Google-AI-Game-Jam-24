@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class NextScene : MonoBehaviour
 {
    
-    public float timeRemaining = 30f; // Baþlangýç zamaný
+    public float timeRemaining = 30f;
     public Text countdownText; // UI Text bileþeni referansý
 
     void Start()
@@ -26,10 +26,7 @@ public class NextScene : MonoBehaviour
         }
         else
         {
-            // Zaman bittiðinde yapýlacaklar
-            countdownText.text = "0:00";
-            // Örneðin, sahneyi yeniden yüklemek için:
-            // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            countdownText.text = "0:00";           
         }
     }
 
