@@ -75,7 +75,7 @@ public class CharacterScripts : MonoBehaviour
         {
             Time.timeScale = 0;
             oyunDurduMu = true;
-            SceneManager.LoadScene("MainManu");
+            SceneManager.LoadScene("Scene1");
         }
 
         if (other.gameObject.tag == "Ground")
