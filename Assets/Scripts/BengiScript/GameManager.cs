@@ -50,6 +50,11 @@ public class GameManager : MonoBehaviour
         MusicManager.instance.PlayMusic();
     }
 
+    public void LoadMainManu()
+    {
+        SceneManager.LoadScene("MainManu");
+    }
+
     public void QuitGame()
     {
         Debug.Log("OMG oyundan çýktýk");
