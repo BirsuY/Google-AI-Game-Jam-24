@@ -42,7 +42,7 @@ public class CharacterScripts : MonoBehaviour
 
   // void ActivateVFX()
   // {
-  //     // VFX prefab'ýndan bir klon oluþtur ve karakterin pozisyonuna yerleþtir
+  //     // VFX prefab'?ndan bir klon olu?tur ve karakterin pozisyonuna yerle?tir
   //     GameObject vfxInstance = Instantiate(doguncakiVFX, transform.position, Quaternion.identity);
   //     // VFX'in ebeveynini bu GameObject'e ayarla
   //     vfxInstance.transform.parent = transform;
@@ -103,7 +103,7 @@ public class CharacterScripts : MonoBehaviour
 
       //  if (Input.GetKey(KeyCode.W))
       //  {
-      //      print("gavurun tohumu goþuyoor");
+      //      print("gavurun tohumu go?uyoor");
       //      anim.SetBool("run", true);
       //  }
       //  else anim.SetBool("run", false);
@@ -116,7 +116,7 @@ public class CharacterScripts : MonoBehaviour
         if (!oyunDurduMu)
         {
             
-            Vector3 move = direction * speed * Time.deltaTime; // Kameranin yonune gore hareketimiz dönüyo
+            Vector3 move = direction * speed * Time.deltaTime; // Kameranin yonune gore hareketimiz d?n?yo
             rb.MovePosition(transform.position + move);
          
         }
@@ -153,5 +153,7 @@ public class CharacterScripts : MonoBehaviour
         //    anim.SetBool("jump", true);
         // }
     }
+
+
 
 }
