@@ -14,6 +14,10 @@ public class CharacterScripts : MonoBehaviour
     bool isGrounded;
     [SerializeField] Animator anim;
     private AudioSource audioSource;
+    // public GameObject doguncakiVFX;
+    //public float vfxYokEtmeSuresi = 30f;
+     
+
 
 
 
@@ -31,15 +35,28 @@ public class CharacterScripts : MonoBehaviour
 
         Invoke("PlaySoundAfterDelay", 15f);
 
+      //  DontDestroyOnLoad(gameObject);
+      //  ActivateVFX();
+
     }
 
-    void PlaySoundAfterDelay()
+  // void ActivateVFX()
+  // {
+  //     // VFX prefab'ýndan bir klon oluþtur ve karakterin pozisyonuna yerleþtir
+  //     GameObject vfxInstance = Instantiate(doguncakiVFX, transform.position, Quaternion.identity);
+  //     // VFX'in ebeveynini bu GameObject'e ayarla
+  //     vfxInstance.transform.parent = transform;
+  // } 
+
+        void PlaySoundAfterDelay()
     {
         if (!audioSource.isPlaying)
         {
             audioSource.Play();
         }
     }
+
+    
 
     void Update()
     {
@@ -125,12 +142,16 @@ public class CharacterScripts : MonoBehaviour
         if (other.gameObject.tag == "Ground")
         {
             isGrounded = true;
-          //  anim.SetBool("jump", false);
+
+          //  GameObject vfx = Instantiate(doguncakiVFX, transform.position, transform.rotation);
+          //  Destroy(vfx, 30f);
+
+            //  anim.SetBool("jump", false);
         }
-       // else
-       // {
-       //    anim.SetBool("jump", true);
-       // }
+        // else
+        // {
+        //    anim.SetBool("jump", true);
+        // }
     }
 
 }

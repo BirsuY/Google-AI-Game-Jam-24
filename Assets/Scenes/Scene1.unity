@@ -5591,6 +5591,7 @@ MonoBehaviour:
   jumpForce: 7
   rb: {fileID: 1314217204}
   anim: {fileID: 1314217207}
+  doguncakiVFX: {fileID: 100006, guid: 60bc526f4be1e044ab9e46340b82ffb3, type: 3}
 --- !u!95 &1314217207
 Animator:
   serializedVersion: 5

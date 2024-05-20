@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MusicManager : MonoBehaviour
 {
@@ -14,11 +15,17 @@ public class MusicManager : MonoBehaviour
             DontDestroyOnLoad(gameObject); 
             audioSources = GetComponents<AudioSource>();
             PlayMusic();
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
             Destroy(gameObject); // Baþka bi instance varsa bunu yok etmek için kullanýlýyo
         }
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        StopMusic();
     }
 
 
@@ -37,7 +44,27 @@ public class MusicManager : MonoBehaviour
     {
         foreach (AudioSource audioSource in audioSources)
         {
-            audioSource.Stop();
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
         }
     }
+
+  //  public void ToggleSound() //ses açýp kapama
+  //  {
+  //      foreach (AudioSource audioSource in audioSources)
+  //      {
+  //          if (audioSource.isPlaying)
+  //          {
+  //              audioSource.Stop();
+  //          }
+  //          else
+  //          {
+  //              audioSource.Play();
+  //          }
+  //      }
+  // 
+  // 
+  //  }
 }

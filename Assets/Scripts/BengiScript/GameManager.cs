@@ -10,10 +10,12 @@ public class GameManager : MonoBehaviour
     private bool gameStarted;
     private int activeSceneIndex = 1;
 
+
     void Start()
     {
         Debug.Log("geçti");
         activeSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
         timer = 0f;
         gameStarted = true; 
         Debug.Log("Oyun Baþladý");
@@ -43,6 +45,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+  //  void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+  //  {
+  //      // Sahne deðiþtiðinde müziði durdur
+  //      if (activeSceneIndex < SceneManager.GetActiveScene().buildIndex)
+  //      {
+  //          // Eðer mevcut sahne, sahne 1'den büyükse, sahne 0'da çalan müziði durdur
+  //          if (SceneManager.GetActiveScene().buildIndex > 1)
+  //          {
+  //              MusicManager.instance.StopMusic();
+  //          }
+  //      }
+  //  }
+
+
     public void LoadScene(string sceneName)
     {
         Debug.Log("Sahne Yükleniyor: " + sceneName);
@@ -60,4 +76,6 @@ public class GameManager : MonoBehaviour
         Debug.Log("OMG oyundan çýktýk");
         Application.Quit();
     }
+
+
 }
