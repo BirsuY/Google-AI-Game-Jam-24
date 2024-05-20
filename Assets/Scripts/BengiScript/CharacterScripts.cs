@@ -18,14 +18,14 @@ public class CharacterScripts : MonoBehaviour
     //public float vfxYokEtmeSuresi = 30f;
     float Starttime;
     public bool canJump;
-
+    AI ai;
 
 
     void Start()
     {
         oyunDurduMu = false;
         Time.timeScale = 1;
-        canJump = false;
+        ai.canJump = false;
         audioSource = GetComponent<AudioSource>();
 
         if (rb == null) // Rigidbody bile?enini bul ve ata vee e?er inspector'dan atanmam??sa
@@ -73,10 +73,10 @@ public class CharacterScripts : MonoBehaviour
                 Jump();
                 isGrounded = false;
             }
-            if (isGrounded && canJump)
+            if (isGrounded && ai.canJump)
             {
                 Jump();
-                canJump = false;
+                ai.canJump = false;
             }
 
             // if (rb.velocity.y > 0)
@@ -157,22 +157,13 @@ public class CharacterScripts : MonoBehaviour
         if(other.gameObject.tag == "Activator")
         {
             Destroy(other.gameObject);
-            Starttime = Time.time;
-            while(Time.time - Starttime < 10f)
+            Starttime = Time.time; 
+            float t = 0;
+            ai.CheckForObstacles();
+            while ( t < 10)
             {
-                GameObject[] obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
-                canJump = false;
-                foreach (GameObject obstacle in obstacles)
-                {
-
-                    float offset = obstacle.transform.rotation.z;
-                    Debug.Log(offset);
-                    if (Mathf.Abs(offset) < 100)
-                    {
-                        canJump = true;
-                        break;
-                    }
-                }
+                t = Mathf.FloorToInt((Time.time - Starttime) % 60);
+                ai.CheckForObstacles();
             }
             
         }
