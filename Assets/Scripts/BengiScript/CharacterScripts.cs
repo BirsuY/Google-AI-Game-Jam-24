@@ -16,7 +16,8 @@ public class CharacterScripts : MonoBehaviour
     private AudioSource audioSource;
     // public GameObject doguncakiVFX;
     //public float vfxYokEtmeSuresi = 30f;
-     
+    AI ai;
+    float Starttime;
 
 
 
@@ -147,6 +148,16 @@ public class CharacterScripts : MonoBehaviour
           //  Destroy(vfx, 30f);
 
             //  anim.SetBool("jump", false);
+        }
+
+        if(other.gameObject.tag == "Activator")
+        {
+            Starttime = Time.time;
+            while(Time.time - Starttime < 10)
+            {
+                ai.CheckForObstacles();
+            }
+            
         }
         // else
         // {

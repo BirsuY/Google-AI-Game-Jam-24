@@ -4,15 +4,15 @@ public class AI : MonoBehaviour
 {
     public float jumpForce = 5f;  
     public Vector3 jumpDistance = new Vector3(2f, 0f, 0f);  
-    private Rigidbody rb;
-    private bool canJump = false;
+    public Rigidbody rb;
+    public bool canJump = false;
 
-    void Start()
+    public void Start()
     {
         rb = GetComponent<Rigidbody>();  
     }
 
-    void Update()
+    public void Update()
     {
         CheckForObstacles();
 
@@ -22,7 +22,7 @@ public class AI : MonoBehaviour
         }
     }
 
-    void CheckForObstacles()
+    public void CheckForObstacles()
     {
         GameObject[] obstacles = GameObject.FindGameObjectsWithTag("obstacle");
         canJump = false;
@@ -38,7 +38,7 @@ public class AI : MonoBehaviour
         }
     }
 
-    void Jump_AI()
+    public void Jump_AI()
     {
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         canJump = false;  
